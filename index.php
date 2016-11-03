@@ -2,58 +2,28 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
-	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/logo-nav.css" rel="stylesheet">
-     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-	<title>Oficina</title>
+	<title>Tela login</title>
 	
 </head>
 <body>
-	<div class="pagina" align="center">
-		<form action="php/verificar.php" method="POST">
-			<div class="login">
-				<fieldset style="border: none;">
-					<img src="img/logo.png" style="width: 80%; height: 50%;"><br>
-					<div id="aviso">
-						<?php 
+	<form action="verificar.php" method="POST"> <!--enviando os dados digitados por meio de POST-->
+		<?php //abro o php para verificar se 
+			session_start(); //inicio a sessão
+			@$login = $_SESSION['login']; //pego a session login para verificar o perfil;
+			if ($login == "Login incorreto") { //verifica se a sessao login recebeu "login incorreto";
 
-							session_start();
-							@$login = $_SESSION['login'];
-							 if ($login == "Login incorreto") {
-						
-							 	echo "<div class='notification error'>
-		 						<img src='img/erro.png' style='height: 15px; width: 15px;'>&nbspUsuário e/ou senha inválido. Tente novamente.
-									</div>";
-							 	$_SESSION['login'] = "";
-							 }
-							 elseif($login == "expirou"){
-
-							 	echo "<script> alert('Você foi desconectado por inatividade!');</script>";
-							 	$_SESSION['login'] = "";	
-
-							 }
-							 else{
-
-							 	$_SESSION['login'] = "";	
-							 }
-						?>
-					</div>
-					<h3>Efetue o login:</h3>
-					Email: <input type="email" name="email" autofocus required class="inputtext" alt="Digite seu Emaill" placeholder="Digite o email"><br><br>
-					Senha: <input type="password" name="senha" required minlength="7" class="inputtext" alt="Digite sua Senha" placeholder="Digite a senha"><br><br>
-					<input type="submit" name="logar" class="btnlogar">
-				</fieldset>
-			</div>
-		</form>
-	</div>			
+				echo "Usuário e/ou senha inválido. Tente novamente"; //emite mensagem de login incorreto;
+				$_SESSION['login'] = ""; //esvazia sessao login para quando atualizar a pagina, a mensagem desaparecer;
+			}
+			else{
+				$_SESSION['login'] = ""; //se login nao for incorreto, apenas esvazia sessao login para nao exibir mensagem de erro; 	
+			 }
+		?>
+		<h3>Efetue o login:</h3>
+		Email: <input type="email" name="email" autofocus required class="inputtext" alt="Digite seu Emaill" placeholder="Digite o email"><br><br> <!--campo email-->
+		Senha: <input type="password" name="senha" required minlength="7" class="inputtext" alt="Digite sua Senha" placeholder="Digite a senha"><br><br><!--campo senha-->
+		<input type="submit" name="logar" class="btnlogar">
+	</form>		
 </body>
 </html>
