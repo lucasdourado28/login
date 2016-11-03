@@ -10,10 +10,10 @@
 	}
 	else{
 		//faz a conexao com o banco ao verificar que não é o root
-		include "conexao.php";
-		$sql= "SELECT * FROM tabela WHERE email='$email'"; 
-		$contatos = $conec -> prepare($sql);
-		$contatos -> execute();
+		include "conexao.php"; //pagina que faz a conexão com o banco
+		$sql= "SELECT * FROM tabela WHERE email='$email'"; //seleciona a coluna email do banco
+		$contatos = $conec -> prepare($sql); //prepara os dados para conexão
+		$contatos -> execute(); //executa a conexão com o banco
 	
 		foreach($contatos as $banco){	//passa os dados do banco 		
 			$email_bd  = $banco['email'];//login do banco
@@ -37,7 +37,7 @@
 			
 		}
 		else{//se o email ou senha nao existirem no banco
-				$_SESSION['login'] = ""; //sessao utilizada para verificar se possui acesso a pagina ou nao;
+				$_SESSION['login'] = "login incorreto"; //sessao utilizada para verificar se usuario tentou logar mas digitou algum dados inexistente no banco;
 				header("Location: index.php");
 			}	
 	}
