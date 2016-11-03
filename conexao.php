@@ -1,7 +1,7 @@
 <?php 
 
 	try{
-		$fusca= new PDO("mysql:host=localhost; dbname=autoescola_bd","root");
+		$fusca= new PDO("mysql:host=hospedagem; dbname= meubanco","login", "senha");
 		//echo "Conexao efetuada";
 	}
 	catch(PDOException $e){
