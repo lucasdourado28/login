@@ -11,7 +11,7 @@
 		<?php //abro o php para verificar se 
 			session_start(); //inicio a sessão
 			@$login = $_SESSION['login']; //pego a session login para verificar o perfil;
-			if ($login == "Login incorreto") { //verifica se a sessao login recebeu "login incorreto";
+			if ($login == "login incorreto") { //verifica se a sessao login recebeu "login incorreto";
 
 				echo "Usuário e/ou senha inválido. Tente novamente"; //emite mensagem de login incorreto;
 				$_SESSION['login'] = ""; //esvazia sessao login para quando atualizar a pagina, a mensagem desaparecer;
